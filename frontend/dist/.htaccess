@@ -1,0 +1,37 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # 1. Force HTTPS and Canonical Non-WWW Domain
+  RewriteCond %{HTTP_HOST} ^www\.programmingwala\.com [NC]
+  RewriteRule ^(.*)$ https://programmingwala.com/$1 [L,R=301]
+
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://programmingwala.com/$1 [L,R=301]
+
+  # 2. Strip Trailing Slash on non-directories (prevents duplicate URLs in GSC)
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} (.+)/$
+  RewriteRule ^ %1 [L,R=301]
+
+  # 3. Serve Prerendered Static HTML files directly if available
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+
+  # 4. Pass API and uploads requests to backend
+  RewriteRule ^api/ - [L]
+  RewriteRule ^uploads/ - [L]
+
+  # 5. SPA Fallback for client-side routing
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  <Files "index.html">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </Files>
+</IfModule>
