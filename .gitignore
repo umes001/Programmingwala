@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Build output (do not ignore frontend/dist so Hostinger receives the compiled frontend)
+# dist/
+
+# Environment variables
+.env
+
+# Logs
+*.log
+
+# OS files
+nul
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+
+# Local SQLite databases
+*.sqlite
+backend/data/*.sqlite
+mockData.json

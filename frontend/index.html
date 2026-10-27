@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
+    <link rel="image_src" href="https://programmingwala.com/logo.png" />
+    <meta name="thumbnail" content="https://programmingwala.com/logo.png" />
+    <meta name="application-name" content="ProgrammingWala" />
+    <meta name="apple-mobile-web-app-title" content="ProgrammingWala" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="ProgrammingWala & AppleTree Infotech - Premier Tech Learning & Career Platform. Master Java Full Stack, AWS DevOps, Python AI, React.js & MERN Stack with ISO-certified curriculum, live compiler practice, and 100% placement support in Ghaziabad, Noida & Delhi NCR." />
+    <meta name="keywords" content="Java Full Stack Developer, AWS DevOps Engineer, Python Full Stack Developer, React Developer, MERN Stack Developer, Data Engineer, Manish Kumar Java Developer, ProgrammingWala, AppleTree Infotech, Coding Classes Ghaziabad, Java Training Noida, DevOps Certification India, Tech Jobs 2026" />
+    <meta name="author" content="ProgrammingWala & AppleTree Infotech" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="theme-color" content="#0b0f19" />
+    
+    <!-- OpenGraph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://programmingwala.com" />
+    <meta property="og:title" content="ProgrammingWala | Tech Careers, Java Full Stack, AWS DevOps & Practice Hub" />
+    <meta property="og:description" content="Launch your dream software engineering career with live code practice, real-world enterprise projects, ISO-verifiable certificates, and 100% placement support." />
+    <meta property="og:image" content="https://programmingwala.com/logo.png" />
+    <meta property="og:site_name" content="ProgrammingWala" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ProgrammingWala | Top Tech Careers, Java Full Stack & AWS DevOps" />
+    <meta name="twitter:description" content="Master in-demand software skills with ISO-certified coaching, interactive coding playground, and guaranteed career placement." />
+    <meta name="twitter:image" content="https://programmingwala.com/logo.png" />
+
+    <link rel="canonical" href="https://programmingwala.com" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>ProgrammingWala | Best Java Full Stack, AWS DevOps & Tech Career Platform</title>
+
+    <!-- Schema.org JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "EducationalOrganization",
+          "@id": "https://programmingwala.com/#organization",
+          "name": "ProgrammingWala & AppleTree Infotech",
+          "url": "https://programmingwala.com",
+          "logo": "https://programmingwala.com/logo.png",
+          "description": "Leading tech education and software engineering institute offering job-oriented training in Java Full Stack, AWS DevOps, Python AI, and MERN Stack.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "C-60 R.K Tower 3rd Floor RDC",
+            "addressLocality": "Ghaziabad",
+            "addressRegion": "Uttar Pradesh",
+            "postalCode": "201001",
+            "addressCountry": "India"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+91-7503962162",
+            "contactType": "Admissions & Support",
+            "areaServed": "IN",
+            "availableLanguage": ["English", "Hindi"]
+          },
+          "sameAs": [
+            "https://www.afshaenterprises.com",
+            "https://github.com/Lightining29"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://programmingwala.com/#website",
+          "url": "https://programmingwala.com",
+          "name": "ProgrammingWala",
+          "publisher": {
+            "@id": "https://programmingwala.com/#organization"
+          },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://programmingwala.com/careers/{search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Apply saved theme before paint to avoid a flash of the wrong theme -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('appletree-theme');
+          if (saved === 'dark') document.documentElement.classList.add('dark');
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-brandCream font-inter text-slate-800 selection:bg-brandCoral-light selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW registration failed:', err));
+        });
+      }
+    </script>
+  </body>
+</html>

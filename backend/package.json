@@ -1,0 +1,32 @@
+{
+  "name": "pranidha-kindergarten-backend",
+  "version": "1.0.0",
+  "description": "Backend server for Pranidha International School Kindergarten website",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "alasql": "^4.5.3",
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.10.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "jspdf": "^4.2.1",
+    "mongoose": "^8.3.1",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.23.4",
+    "nodemailer": "^10.0.10",
+    "qrcode": "^1.5.4",
+    "razorpay": "^2.9.6",
+    "sequelize": "^6.37.8",
+    "socket.io": "^4.8.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

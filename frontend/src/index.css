@@ -1,0 +1,795 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Light mode (default): warm cream background, dark slate text */
+  html {
+    background-color: #FAF8F5;
+    --hero-fade: #FAF8F5;
+  }
+
+  body {
+    background-color: #FAF8F5;
+    color: #1e293b;
+  }
+
+  /* Dark mode: deep slate background, light text */
+  html.dark {
+    background-color: #020617;
+    --hero-fade: #020617;
+  }
+
+  html.dark body {
+    background-color: #020617;
+    color: #e5eefb;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-quicksand font-bold tracking-tight;
+  }
+
+  ::selection {
+    background-color: rgba(56, 189, 248, 0.25);
+    color: #eff6ff;
+  }
+}
+
+/* Custom Kid-friendly Playful Details */
+.curvy-bg {
+  background-image: radial-gradient(circle at 100% 150%, #B3E5FC 24%, #4FC3F7 25%, #4FC3F7 28%, #FAF8F5 29%);
+}
+
+/* Playful custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #020617;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #38bdf8, #818cf8);
+  border-radius: 10px;
+  border: 2px solid #020617;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #22d3ee, #6366f1);
+}
+
+/* Dark theme page overrides for legacy light cards.
+   Scoped under html.dark so light mode keeps the original light utilities. */
+html.dark body,
+html.dark [class*='bg-white'],
+html.dark [class*='bg-slate-50'],
+html.dark [class*='bg-[#FAF8F5]'],
+html.dark [class*='bg-brandCream'],
+html.dark [class*='bg-brandCream-dark'],
+html.dark [class*='border-orange-50'],
+html.dark [class*='border-slate-200'],
+html.dark [class*='text-slate-800'],
+html.dark [class*='text-slate-700'],
+html.dark [class*='text-slate-600'],
+html.dark [class*='text-slate-500'] {
+  color: #e5eefb !important;
+}
+
+html.dark [class*='bg-white'],
+html.dark [class*='bg-slate-50'],
+html.dark [class*='bg-[#FAF8F5]'],
+html.dark [class*='bg-brandCream'],
+html.dark [class*='bg-brandCream-dark'] {
+  background-color: #111827 !important;
+}
+
+html.dark [class*='border-orange-50'],
+html.dark [class*='border-slate-200'] {
+  border-color: rgba(148, 163, 184, 0.18) !important;
+}
+
+/* ───────────────────────────────────────────────────────────
+   LIGHT MODE OVERRIDES
+   Several pages/portals are built with dark-first utilities
+   (bg-slate-950/900/800, dark glassmorphism gradients, etc.).
+   When dark mode is OFF, flip those surfaces + the light text
+   that sits on them to a light palette so the whole site is
+   consistently light. Excludes text-white (used on colored
+   buttons/badges, which must stay white in both themes).
+   ─────────────────────────────────────────────────────────── */
+
+/* Dark-first backgrounds → light surfaces (only when NOT in dark mode, NOT in coding arena, and NOT in KBC) */
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='bg-slate-950'],
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='bg-slate-900'],
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='bg-slate-800'],
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='bg-[#020617]'],
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='bg-[#0f172a]'],
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='bg-[#111827]'] {
+  background-color: #ffffff !important;
+}
+
+/* Dark glassmorphism / slate gradients → soft cream gradient in light mode.
+   Targets the rgba(15,23,42) / rgba(2,6,23) slate gradients. */
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='bg-[linear-gradient(135deg,rgba(15,23,42'],
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='bg-[linear-gradient(145deg,rgba(15,23,42'],
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='bg-[linear-gradient(180deg,rgba(2,6,23'] {
+  background-image: linear-gradient(135deg, #ffffff, #FAF8F5) !important;
+  background-color: #ffffff !important;
+}
+
+/* Dark borders (white/10, white/20, slate-800) → soft warm border in light mode */
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='border-white/10'],
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='border-white/20'],
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='border-slate-800'] {
+  border-color: rgba(255, 112, 67, 0.16) !important;
+}
+
+/* Semi-transparent white surfaces (bg-white/6 etc.) → solid white in light mode */
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='bg-white/6'],
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='bg-white/5'],
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='bg-white/10'],
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='bg-white/20'],
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='bg-white\/5'],
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='bg-white\/10'],
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='bg-white\/20'] {
+  background-color: #ffffff !important;
+}
+
+/* Light-on-dark text that only ever appears on dark surfaces → dark slate
+   in light mode. (text-white is intentionally NOT included — it stays white
+   on colored buttons/badges.) */
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='text-slate-100'],
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='text-slate-200'],
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='text-cyan-100'],
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='text-cyan-200'],
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='text-indigo-100'],
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *):not(.kbc-dark-root):not(.kbc-dark-root *) [class*='text-rose-100'],
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *) [class*='text-amber-100'] {
+  color: #334155 !important;
+}
+
+/* The muted slate-300/400 helper text stays a readable grey on light bg */
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *) [class*='text-slate-300'],
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *) [class*='text-slate-400'] {
+  color: #64748b !important;
+}
+
+/* Form inputs, textareas, selects in light mode: ALWAYS dark text, crisp visible border */
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *) input:not([type='checkbox']):not([type='radio']):not([type='submit']):not([type='button']):not([type='reset']),
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *) textarea,
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *) select {
+  color: #0f172a !important;
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+}
+
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *) input:not([type='checkbox']):not([type='radio']):not([type='submit']):not([type='button']):not([type='reset']):focus,
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *) textarea:focus,
+html:not(.dark) :not(.arena-dark-root):not(.arena-dark-root *) select:focus {
+  border-color: #6366f1 !important;
+  outline: 2px solid rgba(99, 102, 241, 0.2) !important;
+}
+
+html:not(.dark) :not(.arena-dark-root) input::placeholder,
+html:not(.dark) :not(.arena-dark-root) textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+html:not(.dark) :not(.arena-dark-root) select option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+/* Admin/Parent dashboard shell: dark radial+slate gradient → light in light mode.
+   The dark-mode version is defined later under html.dark. */
+html:not(.dark) .admin-dashboard-shell {
+  background: linear-gradient(180deg, #FAF8F5 0%, #ffffff 50%, #ffffff 100%);
+}
+
+/* Sidebar + content panels inside the admin shell (built dark-first). */
+html:not(.dark) .admin-dashboard-shell [class*='bg-slate-900'],
+html:not(.dark) .admin-dashboard-shell [class*='bg-slate-900\/80'] {
+  background-color: #ffffff !important;
+}
+
+/* The purple active sidebar item: in light mode use a coral-tinted active style. */
+html:not(.dark) .admin-dashboard-shell .clay-sidebar-item-active {
+  background: linear-gradient(135deg, rgba(255, 112, 67, 0.14), rgba(79, 195, 247, 0.14)) !important;
+  color: #FF7043 !important;
+  border: 1px solid rgba(255, 112, 67, 0.25) !important;
+  box-shadow: 0 12px 24px rgba(255, 112, 67, 0.12) !important;
+}
+
+/* Admin sidebar + welcome bar text: dark in light mode.
+   These use text-white / text-white/80 / hover:text-white on dark panels. */
+html:not(.dark) .admin-dashboard-shell [class*='text-white'],
+html:not(.dark) .admin-dashboard-shell [class*='text-white\/80'],
+html:not(.dark) .admin-dashboard-shell [class*='text-white\/25'] {
+  color: #1e293b !important;
+}
+/* The avatar chip (bg-white/25 ring) keeps a dark label on a light fill. */
+html:not(.dark) .admin-dashboard-shell [class*='bg-white\/25'] {
+  background-color: rgba(15, 23, 42, 0.06) !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  color: #1e293b !important;
+}
+/* Sidebar hover: in light mode hover to a soft tinted surface, keep dark text. */
+html:not(.dark) .admin-dashboard-shell [class*='hover:text-white'] {
+  color: #334155 !important;
+}
+html:not(.dark) .admin-dashboard-shell [class*='hover:bg-white\/10']:hover {
+  background-color: rgba(255, 112, 67, 0.08) !important;
+}
+
+/* ── Home page light theme: bright hero + light content sections ── */
+/* HERO: in light mode, replace the dark video overlay with a bright airy gradient
+   and flip all hero text to dark slate for readability. */
+html:not(.dark) .home-hero {
+  background: linear-gradient(135deg, #ecfeff 0%, #e0f2fe 35%, #ede9fe 70%, #fff7ed 100%) !important;
+  color: #0f172a !important;
+}
+/* Hide the dark video overlays + bottom dark fade so the light gradient shows through. */
+html:not(.dark) .home-hero > .absolute > .bg-slate-950\/75,
+html:not(.dark) .home-hero > .absolute > [class*='bg-[linear-gradient(120deg,rgba(8,47,73'],
+html:not(.dark) .home-hero > .absolute > .bg-gradient-to-t,
+html:not(.dark) .home-hero > .absolute > [class*='bg-[radial-gradient'] {
+  opacity: 0 !important;
+}
+/* Dim the background video itself in light mode so text stays crisp.
+   Scoped to the hero's overlay wrapper so the preview-card video stays vivid. */
+html:not(.dark) .home-hero > .absolute > video {
+  opacity: 0.18 !important;
+}
+
+/* Hero text → dark slate (badge chip, headings, paragraphs, buttons, captions). */
+html:not(.dark) .home-hero [class*='text-white'],
+html:not(.dark) .home-hero [class*='text-slate-100'],
+html:not(.dark) .home-hero [class*='text-slate-200'],
+html:not(.dark) .home-hero [class*='text-slate-300'] {
+  color: #0f172a !important;
+}
+html:not(.dark) .home-hero [class*='text-cyan-200'],
+html:not(.dark) .home-hero [class*='text-cyan-300'] {
+  color: #0e7490 !important;
+}
+/* Hero glass badge + outline button → light surface with dark text in light mode. */
+html:not(.dark) .home-hero [class*='bg-white/10'],
+html:not(.dark) .home-hero [class*='border-white/15'],
+html:not(.dark) .home-hero [class*='border-white/20'] {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+  color: #0f172a !important;
+}
+/* Hero right-side preview card + its inner dark chips → light surfaces. */
+html:not(.dark) .home-hero [class*='bg-slate-950\/80'],
+html:not(.dark) .home-hero [class*='bg-slate-950\/70'],
+html:not(.dark) .home-hero [class*='bg-slate-900\/95'],
+html:not(.dark) .home-hero [class*='bg-slate-800\/95'],
+html:not(.dark) .home-hero [class*='bg-emerald-500\/10'] {
+  background-color: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08) !important;
+  color: #0f172a !important;
+}
+html:not(.dark) .home-hero [class*='border-white/10'],
+html:not(.dark) .home-hero [class*='border-cyan-400/10'],
+html:not(.dark) .home-hero [class*='border-cyan-400/30'],
+html:not(.dark) .home-hero [class*='border-emerald-400/20'] {
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+/* CONTENT sections (outside the hero): flip white-on-dark text to dark slate. */
+html:not(.dark) .home-page :not(.home-hero):not(.home-hero *) [class*='text-white'] {
+  color: #1e293b !important;
+}
+html:not(.dark) .home-page :not(.home-hero):not(.home-hero *) [class*='text-slate-100'] {
+  color: #1e293b !important;
+}
+html:not(.dark) .home-page :not(.home-hero):not(.home-hero *) [class*='text-slate-200'] {
+  color: #334155 !important;
+}
+html:not(.dark) .home-page :not(.home-hero):not(.home-hero *) [class*='text-slate-300'] {
+  color: #475569 !important;
+}
+
+/* Make the content cards feel airy + warm in light mode (soft shadow, faint border). */
+html:not(.dark) .home-page :not(.home-hero):not(.home-hero *) [class*='bg-slate-900'],
+html:not(.dark) .home-page :not(.home-hero):not(.home-hero *) [class*='bg-slate-950'] {
+  background-color: #ffffff !important;
+  border-color: rgba(255, 112, 67, 0.12) !important;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06) !important;
+}
+
+
+/* The final colored-gradient CTA banner keeps its white text in both themes. */
+html:not(.dark) .home-page [class*='bg-gradient-to-r'][class*='from-indigo-600'] [class*='text-white'],
+html:not(.dark) .home-page [class*='bg-gradient-to-r'][class*='from-indigo-600'] {
+  color: #ffffff !important;
+}
+
+/* ── Practice page: flip white-on-dark text + slate panel to light ── */
+html:not(.dark) .practice-page {
+  color: #1e293b !important;
+}
+html:not(.dark) .practice-page [class*='text-white'] {
+  color: #1e293b !important;
+}
+html:not(.dark) .practice-page [class*='text-slate-100'] {
+  color: #1e293b !important;
+}
+html:not(.dark) .practice-page [class*='text-slate-200'] {
+  color: #334155 !important;
+}
+html:not(.dark) .practice-page [class*='text-slate-300'] {
+  color: #475569 !important;
+}
+/* The cyan rank badge keeps its vibrant look but with a dark score number. */
+html:not(.dark) .practice-page [class*='bg-cyan-400/10'] [class*='text-white'] {
+  color: #0e7490 !important;
+}
+/* The hero gradient banner in Practice: keep it vivid + white text for punch. */
+html:not(.dark) .practice-page > section:first-child {
+  background-image: linear-gradient(135deg, #38bdf8 0%, #818cf8 45%, #6366f1 100%) !important;
+}
+html:not(.dark) .practice-page > section:first-child [class*='text-white'],
+html:not(.dark) .practice-page > section:first-child [class*='text-slate-100'],
+html:not(.dark) .practice-page > section:first-child [class*='text-slate-300'] {
+  color: #ffffff !important;
+}
+
+.dark-theme-parent {
+  background-color: #0F172A;
+  color: #F8FAFC;
+}
+
+/* Premium dark admin shell overrides (only in dark mode) */
+html.dark .admin-dashboard-shell {
+  background:
+    radial-gradient(circle at top, rgba(56, 189, 248, 0.10), transparent 18%),
+    linear-gradient(180deg, #020617 0%, #0f172a 45%, #111827 100%);
+}
+
+html.dark .admin-dashboard-shell .clay-bg,
+html.dark .admin-dashboard-shell .clay-card,
+html.dark .admin-dashboard-shell .clay-card-purple,
+html.dark .admin-dashboard-shell .clay-sidebar {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.82));
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 18px 45px rgba(2, 6, 23, 0.55), inset 0 1px 0 rgba(148, 163, 184, 0.08);
+  color: #eff6ff;
+}
+
+html.dark .admin-dashboard-shell .clay-sidebar-item-active {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(129, 140, 248, 0.18));
+  color: #e0f2fe !important;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  box-shadow: 0 12px 24px rgba(56, 189, 248, 0.12);
+}
+
+html.dark .admin-dashboard-shell .clay-button-purple {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.16), rgba(129, 140, 248, 0.16));
+  color: #eff6ff;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 14px 28px rgba(56, 189, 248, 0.12);
+}
+
+html.dark .admin-dashboard-shell .bg-white,
+html.dark .admin-dashboard-shell .bg-slate-50,
+html.dark .admin-dashboard-shell .bg-slate-100\/50,
+html.dark .admin-dashboard-shell .bg-sky-50,
+html.dark .admin-dashboard-shell .bg-rose-50,
+html.dark .admin-dashboard-shell .bg-emerald-50,
+html.dark .admin-dashboard-shell .bg-amber-50,
+html.dark .admin-dashboard-shell .bg-indigo-50 {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.92), rgba(30, 41, 59, 0.88)) !important;
+  border-color: rgba(148, 163, 184, 0.18) !important;
+  color: #eff6ff !important;
+  box-shadow: 0 18px 40px rgba(2, 6, 23, 0.45), inset 0 1px 0 rgba(148, 163, 184, 0.08);
+}
+
+html.dark .admin-dashboard-shell .text-slate-800,
+html.dark .admin-dashboard-shell .text-slate-700,
+html.dark .admin-dashboard-shell .text-slate-600,
+html.dark .admin-dashboard-shell .text-slate-500,
+html.dark .admin-dashboard-shell .text-slate-400 {
+  color: #e5eefb !important;
+}
+
+html.dark .admin-dashboard-shell .border-slate-50,
+html.dark .admin-dashboard-shell .border-slate-100,
+html.dark .admin-dashboard-shell .border-orange-50,
+html.dark .admin-dashboard-shell .border-slate-200,
+html.dark .admin-dashboard-shell .border-slate-200\/50 {
+  border-color: rgba(148, 163, 184, 0.18) !important;
+}
+
+/* Page transitions */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Claymorphism styles */
+@layer utilities {
+  .clay-bg {
+    background-color: #F6F4FC;
+  }
+  .clay-card {
+    background-color: #FFFFFF;
+    border: 6px solid #FFFFFF;
+    border-radius: 2.5rem;
+    box-shadow: 
+      0 20px 40px -15px rgba(159, 146, 236, 0.12),
+      0 15px 25px -10px rgba(0, 0, 0, 0.04),
+      inset 4px 4px 8px rgba(255, 255, 255, 0.8),
+      inset -4px -4px 8px rgba(159, 146, 236, 0.1);
+  }
+  .clay-card-purple {
+    background-color: #ECEAFE;
+    border: 6px solid #ECEAFE;
+    border-radius: 2.5rem;
+    box-shadow: 
+      0 20px 40px -15px rgba(159, 146, 236, 0.18),
+      inset 4px 4px 8px rgba(255, 255, 255, 0.7),
+      inset -4px -4px 8px rgba(159, 146, 236, 0.15);
+  }
+  .clay-sidebar {
+    background-color: #9F92EC;
+    border: 6px solid #9F92EC;
+    border-radius: 2.5rem;
+    box-shadow: 
+      0 25px 50px -12px rgba(159, 146, 236, 0.25),
+      inset 6px 6px 12px rgba(255, 255, 255, 0.3),
+      inset -6px -6px 12px rgba(0, 0, 0, 0.08);
+  }
+  .clay-sidebar-item-active {
+    background-color: #FFFFFF;
+    color: #9F92EC !important;
+    border-radius: 1.5rem;
+    box-shadow: 
+      0 10px 20px -5px rgba(159, 146, 236, 0.18),
+      inset 2px 2px 4px rgba(255, 255, 255, 0.8),
+      inset -2px -2px 4px rgba(159, 146, 236, 0.08);
+  }
+  .clay-button-purple {
+    background-color: #9F92EC;
+    color: #FFFFFF;
+    border-radius: 1.5rem;
+    box-shadow: 
+      0 12px 24px -8px rgba(159, 146, 236, 0.4),
+      inset 3px 3px 6px rgba(255, 255, 255, 0.3),
+      inset -3px -3px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+  }
+  .clay-button-purple:hover {
+    transform: translateY(-1px);
+    box-shadow: 
+      0 15px 30px -10px rgba(159, 146, 236, 0.5),
+      inset 3px 3px 6px rgba(255, 255, 255, 0.4),
+      inset -3px -3px 6px rgba(0, 0, 0, 0.08);
+  }
+  .clay-button-pink {
+    background-color: #FFC5DC;
+    color: #9F1239;
+    border-radius: 1.5rem;
+    box-shadow: 
+      0 12px 24px -8px rgba(244, 63, 94, 0.15),
+      inset 3px 3px 6px rgba(255, 255, 255, 0.4),
+      inset -3px -3px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+  }
+  .clay-button-pink:hover {
+    transform: translateY(-1px);
+    box-shadow: 
+      0 15px 30px -10px rgba(244, 63, 94, 0.2);
+  }
+  .clay-badge-purple {
+    background-color: #ECEAFE;
+    color: #7C3AED;
+    border-radius: 0.75rem;
+    box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.8), inset -1px -1px 2px rgba(159, 146, 236, 0.1);
+  }
+  .clay-badge-pink {
+    background-color: #FFE4E6;
+    color: #E11D48;
+    border-radius: 0.75rem;
+    box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.8), inset -1px -1px 2px rgba(244, 63, 94, 0.1);
+  }
+  .clay-badge-yellow {
+    background-color: #FEF3C7;
+    color: #D97706;
+    border-radius: 0.75rem;
+    box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.8), inset -1px -1px 2px rgba(251, 191, 36, 0.1);
+  }
+  .clay-badge-blue {
+    background-color: #E0F2FE;
+    color: #0369A1;
+    border-radius: 0.75rem;
+    box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.8), inset -1px -1px 2px rgba(56, 189, 248, 0.1);
+  }
+  .clay-bar {
+    border-radius: 1rem;
+    box-shadow: 
+      inset 3px 0 6px rgba(255, 255, 255, 0.4),
+      inset -3px 0 6px rgba(0, 0, 0, 0.12);
+  }
+}
+
+/* Print Styles for genuine fee receipt & student ID card */
+@media print {
+  @page {
+    size: portrait;
+    margin: 10mm;
+  }
+  
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide the rest of the dashboard app content */
+  .print\:hidden {
+    display: none !important;
+  }
+  
+  /* Make the modal backdrop overlay transparent and flow-based */
+  .fixed.inset-0.z-50 {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    background: #ffffff !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    display: block !important;
+    padding: 0 !important;
+    z-index: auto !important;
+    box-shadow: none !important;
+  }
+  
+  /* Remove wrapping modal layout styles during print */
+  #id-card-modal-container {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    max-width: none !important;
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 !important;
+  }
+
+  /* Style the receipt sheet container - display in flow */
+  #printable-receipt {
+    position: relative !important;
+    margin: 20px auto !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: 380px !important;
+    max-width: 380px !important;
+    background: #ffffff !important;
+    border: 3px double #5B468C !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    display: block !important;
+    padding: 24px !important;
+    border-radius: 24px !important;
+  }
+  
+  #printable-receipt::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    border: 1px solid #5B468C;
+    pointer-events: none;
+    border-radius: 20px;
+  }
+
+  /* Style the vertical ID card container - display in flow */
+  #printable-id-card {
+    position: relative !important;
+    margin: 40px auto !important;
+    left: auto !important;
+    top: auto !important;
+    transform: scale(1.1) !important;
+    width: 260px !important;
+    height: 400px !important;
+    background: #ffffff !important;
+    border: 6px solid #5B468C !important;
+    border-radius: 2rem !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+  }
+
+  /* Style the progress report card container */
+  #result-card-modal-container {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    max-width: none !important;
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 !important;
+  }
+
+  #printable-result-card {
+    position: relative !important;
+    margin: 0 auto !important;
+    background: #FAF9F5 !important;
+    border: 6px double #D4AF37 !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 670px !important;
+    padding: 24px !important;
+    border-radius: 16px !important;
+    page-break-inside: avoid !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Certificate Landscape Print Optimization */
+  @page {
+    size: landscape;
+    margin: 0.8cm;
+  }
+
+  .certificate-print-root {
+    position: relative !important;
+    margin: 0 auto !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    transform: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    page-break-inside: avoid !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CODING ARENA: PERMANENT HIGH-TECH DARK THEME (HackerRank & LeetCode Style)
+   Ensures complete dark theme across all screens regardless of site light/dark mode
+   ═══════════════════════════════════════════════════════════════════════════ */
+.arena-dark-root {
+  background-color: #0d1117 !important;
+  color: #e6edf3 !important;
+  color-scheme: dark !important;
+}
+
+.arena-dark-root ::selection {
+  background-color: rgba(56, 189, 248, 0.35) !important;
+  color: #ffffff !important;
+}
+
+.arena-dark-root [class*='bg-slate-950'],
+.arena-dark-root.bg-slate-950 {
+  background-color: #070a10 !important;
+}
+
+.arena-dark-root [class*='bg-slate-900'],
+.arena-dark-root.bg-slate-900 {
+  background-color: #0d1117 !important;
+}
+
+.arena-dark-root [class*='bg-slate-800'],
+.arena-dark-root.bg-slate-800 {
+  background-color: #161b22 !important;
+}
+
+.arena-dark-root [class*='border-slate-800'],
+.arena-dark-root [class*='border-slate-700'] {
+  border-color: #30363d !important;
+}
+
+.arena-dark-root [class*='text-slate-100'],
+.arena-dark-root [class*='text-slate-200'] {
+  color: #f0f6fc !important;
+}
+
+.arena-dark-root [class*='text-slate-300'],
+.arena-dark-root [class*='text-slate-400'] {
+  color: #8b949e !important;
+}
+
+.arena-dark-root [class*='text-slate-500'] {
+  color: #6e7681 !important;
+}
+
+.arena-dark-root input,
+.arena-dark-root textarea,
+.arena-dark-root select {
+  background-color: #0d1117 !important;
+  color: #f0f6fc !important;
+  border-color: #30363d !important;
+}
+
+.arena-dark-root input:focus,
+.arena-dark-root textarea:focus,
+.arena-dark-root select:focus {
+  border-color: #10b981 !important;
+  outline: 2px solid rgba(16, 185, 129, 0.25) !important;
+}
+
+.arena-dark-root input::placeholder,
+.arena-dark-root textarea::placeholder {
+  color: #6e7681 !important;
+}
+
+.arena-dark-root select option {
+  background-color: #161b22 !important;
+  color: #f0f6fc !important;
+}
+
+.arena-dark-root pre,
+.arena-dark-root code {
+  font-family: 'JetBrains Mono', 'Fira Code', Menlo, Monaco, Consolas, 'Courier New', monospace !important;
+}
+
+/* Custom Sleek Scrollbars for Coding Arena */
+.arena-dark-root ::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+.arena-dark-root ::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+.arena-dark-root ::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 4px;
+}
+.arena-dark-root ::-webkit-scrollbar-thumb:hover {
+  background: #484f58;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   KBC ARENA & LEADERBOARD BULLETPROOF DARK THEME
+   Guarantees all KBC cards, text, and participants stay strictly in
+   dark stage mode and cannot be overridden by light-theme rules.
+   ═══════════════════════════════════════════════════════════════════════ */
+.kbc-dark-root,
+.kbc-dark-root * {
+  color-scheme: dark !important;
+}
+
+.kbc-dark-root [class*='bg-slate-900'],
+.kbc-dark-root [class*='bg-slate-950'],
+.kbc-dark-root [class*='bg-slate-800'] {
+  background-color: rgba(15, 23, 42, 0.85) !important;
+}
+
+.kbc-dark-root [class*='text-white'],
+.kbc-dark-root .text-white {
+  color: #ffffff !important;
+}
+
+.kbc-dark-root [class*='text-slate-100'],
+.kbc-dark-root [class*='text-slate-200'],
+.kbc-dark-root [class*='text-slate-300'],
+.kbc-dark-root [class*='text-slate-400'] {
+  color: #cbd5e1 !important;
+}
+
+
