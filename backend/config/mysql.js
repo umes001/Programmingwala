@@ -44,19 +44,8 @@ export const getMySQLConfig = (override = {}) => {
   const resolvedPort = Number(override.port || process.env.DB_PORT || process.env.MYSQL_PORT || process.env.HOSTINGER_DB_PORT || process.env.DATABASE_PORT || dbUrlConfig.port || 3306);
 
   return {
-   /* host: resolvedHost,
-    user: resolvedUser,
-    password: resolvedPass,
-    database: resolvedDb,
-    port: resolvedPort,
-    waitForConnections: true,
-    connectionLimit: 20,
-    queueLimit: 0,
-    enableKeepAlive: true,
-    keepAliveInitialDelay: 10000,
-    connectTimeout: 4000
-    */
-     host: localhost,
+   
+    host: localhost,
     user: u375016581_iSzqL,
     password: VO06Q>1KBk@b+$kb,
     database: u375016581_odJ26,
