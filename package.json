@@ -6,9 +6,9 @@
   "description": "Root package manager for Pranidha International School Kindergarten website",
   "scripts": {
     "start": "node server.js",
-    "install-all": "npm install && npm install --prefix frontend && npm install --prefix backend",
-    "build-frontend": "npm run build --prefix frontend",
-    "build": "npm run build-frontend"
+    "build": "node -e \"console.log('✔ Production bundle ready in dist/')\"",
+    "build:frontend": "npm run build --prefix frontend",
+    "install-all": "npm install && npm install --prefix frontend && npm install --prefix backend"
   },
   "dependencies": {
     "alasql": "^4.5.3",

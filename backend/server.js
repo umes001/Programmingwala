@@ -401,10 +401,11 @@ if (typeof PhusionPassenger !== 'undefined') {
   PhusionPassenger.configure({ autoInstall: false });
 }
 
-const PORT = (typeof PhusionPassenger !== 'undefined') ? 'passenger' : (process.env.PORT || 5000);
+const isPassenger = typeof PhusionPassenger !== 'undefined' || Boolean(process.env.PASSENGER_APP_ENV);
+const PORT = isPassenger ? 'passenger' : (process.env.PORT || 5000);
 const httpServer = http.createServer(app);
 
-const server = httpServer.listen(PORT, async () => {
+const onServerReady = async () => {
   console.log(`\x1b[32m✔ Pranidha School Backend running in ${process.env.NODE_ENV || 'production'} mode on ${PORT}\x1b[0m`);
   
   // Connect to Hostinger MySQL Database
@@ -420,7 +421,11 @@ const server = httpServer.listen(PORT, async () => {
   } catch (err) {
     console.warn('Exam database initialization notice on startup:', err.message);
   }
-});
+};
+
+const server = isPassenger
+  ? httpServer.listen('passenger', onServerReady)
+  : httpServer.listen(PORT, '0.0.0.0', onServerReady);
 
 // Graceful shutdown handling
 process.on('SIGTERM', () => {
