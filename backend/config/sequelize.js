@@ -21,11 +21,11 @@ export const getMySQLConfig = (override = {}) => {
   reloadEnv();
   return {
     host: override.host || process.env.DB_HOST || process.env.MYSQL_HOST || 'localhost',
-    user: override.user || process.env.DB_USER || process.env.MYSQL_USER || 'root',
+    user: override.user || process.env.DB_USER || (process.env.MYSQL_USER !== 'root' ? process.env.MYSQL_USER : null) || 'u375016581_iSzqL',
     password: override.password !== undefined 
       ? override.password 
-      : (process.env.DB_PASSWORD || process.env.MYSQL_PASSWORD || process.env.DB_PASS || process.env.MYSQL_PASS || ''),
-    database: override.database || process.env.DB_NAME || process.env.DB_DATABASE || process.env.MYSQL_DATABASE || 'pranidha_school',
+      : (process.env.DB_PASSWORD || process.env.MYSQL_PASSWORD || process.env.DB_PASS || process.env.MYSQL_PASS || 'VO06Q>1KBk@b+$kb'),
+    database: override.database || process.env.DB_NAME || process.env.DB_DATABASE || process.env.MYSQL_DATABASE || 'u375016581_odJ26',
     port: Number(override.port || process.env.DB_PORT || process.env.MYSQL_PORT || 3306)
   };
 };

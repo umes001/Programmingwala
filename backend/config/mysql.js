@@ -44,12 +44,13 @@ export const getMySQLConfig = (override = {}) => {
   const resolvedPort = Number(override.port || process.env.DB_PORT || process.env.MYSQL_PORT || process.env.HOSTINGER_DB_PORT || process.env.DATABASE_PORT || dbUrlConfig.port || 3306);
 
   return {
-   
-    host: localhost,
-    user: u375016581_iSzqL,
-    password: VO06Q>1KBk@b+$kb,
-    database: u375016581_odJ26,
-    port: 3306,
+    host: override.host || process.env.DB_HOST || process.env.MYSQL_HOST || 'localhost',
+    user: override.user || process.env.DB_USER || (resolvedUser !== 'root' ? resolvedUser : 'u375016581_iSzqL'),
+    password: override.password !== undefined 
+      ? override.password 
+      : (process.env.DB_PASSWORD || process.env.MYSQL_PASSWORD || 'VO06Q>1KBk@b+$kb'),
+    database: override.database || process.env.DB_NAME || (resolvedDb !== 'pranidha_school' ? resolvedDb : 'u375016581_odJ26'),
+    port: resolvedPort || 3306,
     waitForConnections: true,
     connectionLimit: 20,
     queueLimit: 0,
